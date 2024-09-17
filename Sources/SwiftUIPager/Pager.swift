@@ -108,6 +108,9 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
     /// Opacity increment applied to unfocused pages
     var opacityIncrement: Double?
 
+    /// blur radius applied to unfocused pages
+    var blurRadius: CGFloat?
+
     /// `true` if  `Pager` can be dragged
     var allowsDragging: Bool = true
 
@@ -155,7 +158,7 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
 
     /// Callback invoked when a new page is set
     var onPageChanged: ((Int) -> Void)?
-	
+
     /// Callback for a dragging began event
     var onDraggingBegan: (() -> Void)?
 
@@ -206,6 +209,7 @@ public struct Pager<Element, ID, PageView>: View  where PageView: View, Element:
                 .interactive(scale: interactiveScale)
                 .interactive(opacity: opacityIncrement)
                 .interactive(rotation: shouldRotate)
+                .interactive(blurRadius: blurRadius)
                 .pageOffset(pageOffset)
                 .itemSpacing(itemSpacing)
                 .itemAspectRatio(itemAspectRatio, alignment: itemAlignment)

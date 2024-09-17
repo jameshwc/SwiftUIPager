@@ -264,6 +264,13 @@ extension Pager: Buildable {
         mutating(keyPath: \.shouldRotate, value: shouldRotate)
     }
 
+    /// Call this method to add a blur effect to the pages.
+    /// - Parameter radius: blur radius
+    /// - Note: `radius` must be greater than 0
+    public func interactive(blur radius: CGFloat) -> Self {
+        mutating(keyPath: \.blurRadius, value: radius)
+    }
+
     /// Call this method to add a 3D rotation effect.
     ///
     /// - Parameter value: `true` if the pages should have a 3D rotation effect

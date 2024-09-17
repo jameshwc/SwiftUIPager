@@ -275,6 +275,13 @@ extension Pager.PagerContent {
         let distance = abs(distance(to: item))
         return Double(max(interactiveScale, min(1, 1 - distance * scaleIncrement)))
     }
+    
+    /// Blur radius that applies to a particular item
+    func blur(for item: PageWrapper<Element, ID>) -> CGFloat {
+        guard let blurRadius = blurRadius else { return 0 }
+        let distance = abs(distance(to: item))
+        return distance == 0 ? 0 : CGFloat(blurRadius)
+    }
 
     private func distance(to item: PageWrapper<Element, ID>) -> CGFloat {
         guard let index: Int = dataDisplayed.firstIndex(of: item) else { return 0 }

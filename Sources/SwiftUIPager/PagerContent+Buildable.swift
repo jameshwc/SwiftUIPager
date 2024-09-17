@@ -245,6 +245,14 @@ extension Pager.PagerContent: Buildable {
         mutating(keyPath: \.shouldRotate, value: shouldRotate)
     }
 
+    /// Call this method to add blur effect to the pages
+    /// - Parameter radius: radius of the blur effect
+    /// - Note: This modifier is incompatible with `multiplePagination`
+    /// - Note: This modifier is incompatible with `partialPagination`
+    func interactive(blurRadius radius: CGFloat?) -> Self {
+        mutating(keyPath: \.blurRadius, value: radius)
+    }
+    
     /// Provides an increment to the page index offset. Use this to modify the scroll offset
     ///
     /// - Parameter value: manual offset applied to `Pager`
@@ -313,7 +321,7 @@ extension Pager.PagerContent: Buildable {
     func onPageChanged(_ callback: ((Int) -> Void)?) -> Self {
         mutating(keyPath: \.onPageChanged, value: callback)
     }
-	
+
     /// Sets some padding on the non-scroll axis
     ///
     /// - Parameter length: padding

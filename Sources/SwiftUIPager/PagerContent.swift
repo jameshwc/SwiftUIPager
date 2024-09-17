@@ -87,7 +87,12 @@ extension Pager {
         var interactiveScale: CGFloat = 1
 
         /// Opacity increment applied to unfocused pages
-        var opacityIncrement: Double? 
+        var opacityIncrement: Double?
+
+        /// Blur radius applied to unfocused pages
+        /// - Note: This is only available on iOS 15 and above
+        /// - SeeAlso: `interactive(blur:)`
+        var blurRadius: CGFloat? = 0
 
         /// `true` if  `Pager` can be dragged
         var allowsDragging: Bool = true
@@ -133,7 +138,7 @@ extension Pager {
 
         /// Callback invoked when a new page is set
         var onPageChanged: ((Int) -> Void)?
-		
+
         /// Callback for a dragging began event
         var onDraggingBegan: (() -> Void)?
 
@@ -193,6 +198,7 @@ extension Pager {
                                 .rotation3DEffect(self.angle(for: item),
                                                   axis:  self.axis)
                                 .opacity(opacity(for: item))
+                                .blur(radius: blur(for: item))
                         }
                     }
                 }
